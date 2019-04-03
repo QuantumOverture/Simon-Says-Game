@@ -1,0 +1,158 @@
+//!!!!!!!!!!!!!dont forget to set LOAD TYPE IN JS MENU ABOVE TO NO WRAP BOTTOM OF <HEAD>!!!!!!!!!!!!!!!!!!!!!!
+
+
+allowinput = false;
+/*used in setting the place during comparisons in inputent*/
+
+place = 0;
+colorarray = ["yellow"];
+score = 0;
+
+function flash(color, time) {
+  setTimeout(function() {
+
+    document.getElementById(color).style.backgroundColor = "light" + color;
+    setTimeout(function() {
+      document.getElementById(color).style.backgroundColor = color;
+    }, 1000);
+
+  }, time); 
+
+
+}
+
+
+function inputent(caller) {
+
+
+  if (allowinput === true) {
+
+
+
+    document.getElementById(caller.id).style.backgroundColor = "light" + caller.id;
+    setTimeout(function() {
+      document.getElementById(caller.id).style.backgroundColor = caller.id;
+    }, 100);
+
+
+
+
+    if (colorarray[place] !== caller.id) {
+      place = 0;
+
+      document.getElementById("start").style.display = "block";
+      document.getElementById("gamestate").innerHTML = "GAME OVER! Press Start TO RESTART!";
+
+      score = 0;
+     
+      colorarray = ["yellow"];
+      allowinput = false;
+      return 0;
+    } else if (place < colorarray.length - 1) {
+      score++;
+      document.getElementById("currscore").innerHTML = score;
+      place++;
+    } else if (place === colorarray.length - 1) {
+      score++;
+      document.getElementById("currscore").innerHTML = score;
+
+      place = 0;
+      var x = Math.round(Math.random() * 3);
+
+      if (x === 0) {
+
+        colorarray.push("salmon");
+
+      } else if (x === 1) {
+
+        colorarray.push("green");
+      } else if (x === 2) {
+
+        colorarray.push("yellow");
+      } else if (x === 3) {
+
+        colorarray.push("blue");
+      }
+
+
+
+
+
+      allowinput = false;
+      document.getElementById("gamestate").innerHTML = "GOOD JOB!";
+      setTimeout(function() {
+        maingame();
+      }, 1000);
+    }
+
+
+
+
+
+
+
+
+  }
+
+
+
+
+
+}
+
+
+
+
+
+function maingame() {
+ document.getElementById("currscore").innerHTML = score;
+
+  document.getElementById("start").style.display = "none";
+  document.getElementById("scorebox").style.display = "block";
+  //watch phase of game
+  document.getElementById("gamestate").innerHTML = "WATCH!";
+  for (var i = 0; i < colorarray.length; i++) {
+
+    flash(colorarray[i], i * 2000);
+
+
+  }
+
+  //end of watch phase
+
+
+  //============================================================================================
+
+
+  //enter input and continuation if game phase
+  setTimeout(function() {
+    allowinput = true;
+
+    document.getElementById("gamestate").innerHTML = "Input the correct pattern";
+  }, (colorarray.length * 2000));
+
+
+
+  // end of enterinput and continuation if game phase
+
+
+
+
+
+
+}
+
+
+function helpbox() {
+
+  //use this in the horizontally scrolling text-box
+  alert("From the \"Simon\" wikipedia with a few lines cut out: \"A round in the game consists of the device lighting up one or more buttons in a random order, after which the player must reproduce that order by pressing the buttons. As the game progresses, the number of buttons to be pressed increases.\" ")
+
+
+
+
+
+
+
+
+}

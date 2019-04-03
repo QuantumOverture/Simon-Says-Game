@@ -1,0 +1,35 @@
+<button id="help" onclick="helpbox()" style="color:red;width:115px;"><strong>CLICK HERE FOR INSTRUCTIONS</strong> </button>
+
+
+
+<h1 style="color:white;text-align:center;font-family:Helvetica">SIMON SAYS!</h1>
+
+<p id="gamestate" style="color:white;text-align:center;font-family:Helvetica">Press Start TO Begin!</p>
+
+
+
+
+
+<table id="mainbox">
+
+  <tr>
+    <td id="green" onclick="inputent(this);"></td>
+    <td id="blue" onclick="inputent(this);"></td>
+  </tr>
+
+
+  <tr>
+    <td id="salmon" onclick="inputent(this);"></td>
+    <td id="yellow" onclick="inputent(this);"></td>
+
+  </tr>
+
+</table>
+
+
+<p style="color:white;text-align:center;font-size:30px;font-family:Helvetica;border:2px white solid;width:110px;height:30px;margin:auto;margin-top:30px;border-radius:20px;background-color:gray" onclick="maingame()" id="start">START</p>
+<br>
+<div id="scorebox">
+  <p>SCORE:<span id="currscore">0</span></p>
+
+</div>
